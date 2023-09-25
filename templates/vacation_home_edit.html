@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block  content %}
+
+<input type="hidden" id="vacation-home" name="custId" value="{{ id }}">
+<input type="hidden" id="csrf_token" name="custId" value="{{ csrf_token  }}">
+
+<h1>this is a edit form</h1>
+<div class="container">
+  <form id='home-edit-form'> 
+      {% csrf_token %}
+      {% comment %} <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"> {% endcomment %}
+  
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Home title</label>
+      <input name='title' type="text" class="form-control" id="home-title" aria-describedby="emailHelp">
+      {% comment %} <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> {% endcomment %}
+    </div>
+
+    {% comment %} <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1">
+    </div> {% endcomment %}
+    {% comment %} <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div> {% endcomment %}
+    <button type="submit" class="btn btn-primary" id="home-update-button">Submit</button>
+    <a href="" id='delete-home-button'>Delete</a>
+  </form>
+
+</div>
+<script src="{% static "vacation_home_edit.js" %}" defer></script>
+
+{% endblock  %}

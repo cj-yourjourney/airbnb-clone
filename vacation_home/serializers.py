@@ -10,4 +10,4 @@ class UserSerializzer(serializers.HyperlinkedModelSerializer):
 class VacationHomeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = VacatoinHome
-        fields = ['title']        
+        fields = ['title', 'id']        

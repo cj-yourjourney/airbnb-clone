@@ -13,12 +13,17 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [
-    path("api-vacation-homes/", views.VacationHomeViewSet.as_view()),
-    path("vacation-homes/", TemplateView.as_view(template_name="base.html"))
-    # path('vacations-homes/', views.all_vacation_home_api, name="all-vacation-house-api"),
-    # path('vacation-homes/',views.vacation_home_index,name="vacation-home-index"),
-    # path('', include(router.urls)),
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    
+    # Template URLs
+    path("vacation-homes/", TemplateView.as_view(template_name="vacation_homes.html")),
+    path('create-vacation-home/', TemplateView.as_view(template_name='new_vacation_home.html')),
+    path('vacation-homes/detail/<int:id>/', TemplateView.as_view(template_name='vacation_home_detail.html')),
+    path('vacation-homes/detail/<int:id>/edit/', TemplateView.as_view(template_name='vacation_home_edit.html')),
+    
+    # API  URLs
+    path('vacation-homes-api/',views.VacationHomeList.as_view()),
+    path('vacation-homes-api/<int:pk>/',views.VacationHomeDetail.as_view()),
+
 ]
 
-# urlpatterns = format_suffix_patterns(urlpatterns)
+

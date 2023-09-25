@@ -1,0 +1,16 @@
+<!-- extends must be the first tage -->
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block  content %}
+<input type="hidden" id="vacation-home" name="custId" value="{{ id }}">
+<h1>This is detail page</h1>
+
+<div class='container' id='detail-container'>
+ 
+</div>
+
+<script src= '{% static "vacation_home_detail.js" %}' defer></script>
+{% endblock  %}
