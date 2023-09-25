@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block  content %}
+
+<input type="hidden" id="vacation-home" name="custId" value="{{ id }}">
+<input type="hidden" id="csrf_token" name="custId" value="{{ csrf_token  }}">
+
+<h1>this is a edit form</h1>
+<div class="container">
+
+  {% include "vacation_homes/vacation_home_form.html"  with form_id="home-edit-form" is_edit_form="true"%}
+
+</div>
+<script src="{% static "vacation_home_edit.js" %}" defer></script>
+
+{% endblock  %}

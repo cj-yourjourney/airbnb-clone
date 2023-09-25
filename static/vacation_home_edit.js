@@ -4,8 +4,12 @@ $(document).ready(function () {
     console.log('jquery in edit page')
     var id = $("#vacation-home").val()
     var token = $('#csrf_token').val()
-    console.log(token)
-    console.log(id)
+    // console.log(token)
+    // console.log(id)
+
+    // formType = $('#create-form').val()
+    // console.log(formType)
+
     // Load the Vacation Home First,
     $.ajax({
         type: "GET",
@@ -13,14 +17,15 @@ $(document).ready(function () {
         success: function (response) {
             console.log(response)
             // Add value to the edit form
-            $('#home-title').val(`${response.title}`) 
+            $('#title').val(`${response.title}`);
+            
         },
         error: function(error){
             console.log(error)
 
         }
     });
-
+   
     // Update the instance 
     $("#home-edit-form").submit(function (e) { 
     e.preventDefault();
@@ -32,6 +37,7 @@ $(document).ready(function () {
         data: $(this).serialize(),
         success: function (response) {
             console.log(response)
+            
         },
         error: function(error){
             console.log(error)
@@ -39,6 +45,16 @@ $(document).ready(function () {
     });
 
     });
+
+    console.log('checking the for name');
+    var formType = $("#is-edit-form").val();
+    console.log(formType);
+
+    if (formType =="true") {
+        console.log('add a delete button to the edit form')
+        $('#home-edit-form').append('<a id="delete-home-button" href="#">Delete</a>');
+        $('#vacation-home-button').text('Update');
+    }
 
 
     // Delete the instance 
@@ -60,5 +76,5 @@ $(document).ready(function () {
         });
 
     });
-
+  
 }); // End of Jquery 

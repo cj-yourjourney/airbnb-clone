@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<h1>this is a form</h1>
+<div class="container">
+{% include "vacation_homes/vacation_home_form.html" with form_id="vacation-home-form" %}
+</div>
+
+<script src="{% static "vacation_home_create.js" %}" defer></script>
+{% endblock %}
+
+
+
