@@ -4,7 +4,7 @@ $(document).ready(function () {
     console.log('jquery in edit page')
     var id = $("#vacation-home").val()
     var token = $('#csrf_token').val()
-    // console.log(token)
+    console.log(token)
     // console.log(id)
 
     // formType = $('#create-form').val()

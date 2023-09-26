@@ -1,6 +1,7 @@
  <form id='{{ form_id }}'> 
-    <input type="hidden" name="csrfmiddlewaretoken" value="UTCUMeWgDwlOjb3R7Ig62DQNxo9x1d2lQdia39mLfdQJdWcjPh2Mu9o7u5TSWN0y">
+  {% csrf_token %}
     <input type="hidden" id="is-edit-form" name="custId" value="{{is_edit_form}}">
+    <input type="hidden" id="csrf_token" name="custId" value="{{ csrf_token  }}">
 
     
     <div class="mb-3">

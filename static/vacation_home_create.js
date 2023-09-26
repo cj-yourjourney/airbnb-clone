@@ -1,25 +1,17 @@
 // Create a New Vacation Home 
 
-console.log("create a new home....")
+// Import VacationHomeAjax Class and create an instance 
+import VacationHomeAjax from "./vacation_home_functions.js";
+var vacationHomeAjax = new VacationHomeAjax
 
-formType = $('#create-form').val()
-console.log(formType)
+var token = $('#csrf_token').val()
+
+
+
 
 $('#vacation-home-form').submit(function (e) {
     e.preventDefault();
     console.log("form submitted here!!!!!!");
-    console.log($(this).serialize())
-    $.ajax({
-        type: "POST",
-        url: "/vacation-homes-api/",
-        data: $(this).serialize(),
-        success: function (response) {
-            console.log(response)
-            window.location.href = '/vacation-homes/';
-        },
-        error: function (error) {
-            console.log(error)
-        }
-    });
-
+    let data = $(this).serialize();
+    vacationHomeAjax.create_a_home(data);
 });
