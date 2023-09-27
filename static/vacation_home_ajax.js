@@ -1,6 +1,6 @@
 export default class VacationHomeAjax {
     
-    constructor(){
+    constructor(id=null){
         this.method = {
             get: 'GET',
             post: "POST",
@@ -15,7 +15,7 @@ export default class VacationHomeAjax {
 
         this.api = {
             all_home: "/vacation-homes-api/",
-            home_detail: null,
+            home_detail: "/vacation-homes-api/" + `${id}/`,
     
         }
         this.img = 'https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'
@@ -32,9 +32,10 @@ export default class VacationHomeAjax {
                  </div>`
     }
 
-    vacation_home_ajax(method, api,data=null){
+    vacation_home_ajax(method, api,data=null,headers=null){
         let result = null;
         $.ajax({
+            headers: headers,
             type: method,
             url: api,
             async: false,  //add
@@ -51,39 +52,37 @@ export default class VacationHomeAjax {
     }
     
     load_all_home(){
-     console.log("loading all homes now.....")
         
-     let all_homes = this.vacation_home_ajax(this.method.get, this.api.all_home)
-     var new_home = new VacationHomeAjax
-     
-     $(all_homes).each(function (index, element) {
-    
-         $('.row').append(new_home.home_card(element));
-         console.log()
-     });
-    
-     
+     return this.vacation_home_ajax(this.method.get, this.api.all_home)
 
     }
 
     create_a_home(data){
-     console.log("create a new home now......") 
      this.vacation_home_ajax(this.method.post, this.api.all_home,data)
-     console.log("Created a new home")
-    //  window.location.href = '/vacation-homes/';
+     window.location.href = '/vacation-homes/';
 
     }
 
-    load_a_home(id){
+    load_a_home(){
         console.log('loading one home now........')
-        this.id = id 
-        this.api.home_detail = this.api.all_home + `${this.id}`
-        let home = this.vacation_home_ajax(this.method.get, this.api.home_detail)
-
-        // $('.ul').append(`<li>${home.title}</li>`);
-        $('#detail-container').append(this.home_card(home));
+        return this.vacation_home_ajax(this.method.get, this.api.home_detail)
+        // $('#detail-container').append(this.home_card(home));
     }
 
+    update_a_home(data,headers){
+        // console.log('I am editing a home now here!!!!!')
+        // console.log(this.api.home_detail)
+        // console.log(headers)
+        this.vacation_home_ajax(this.method.put, this.api.home_detail, data, headers)
+    
+    }
+
+    delete_a_home(headers,data=null){
+        // console.log("I am deleting a home now!!!!!!")
+        // console.log(this.api.home_detail)
+        // console.log(headers)
+        this.vacation_home_ajax(this.method.delete, this.api.home_detail,data,headers)
+    }
 
 }
 
